@@ -6,10 +6,17 @@
 </head>
 
 <body>
-  <!-- This is what a code comment in HTML looks like. -->
-
-  <!-- The `yield` below is where the contents of a view file are put. -->
-  <!-- Then the combined layout + view is sent back to the client. -->
-  <%= yield %>
+  To DELETE User:
+  <form action= "/process_delete_user" method="post">
+    Please enter your email address
+  <br> 
+  <input type="text" name="user_email">
+  <br> 
+    Please enter your password
+  <br> 
+  <input type="text" name="user_password">
+  <br> 
+      <input type="submit">
+  </form>
 </body>
 </html>
