@@ -1,8 +1,3 @@
-MyApp.get "/" do
-
-erb :"home_page"
-end
-
 MyApp.get "/create_user" do
 
 erb :"users/create_user"
