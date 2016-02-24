@@ -19,7 +19,7 @@ MyApp.post "/login" do
   if @user.password == params[:user_password]
     session["user_id"] = @user.id
 
-    erb :"/login"
+    erb :"/logins/login"
   else
     erb :"/error"
   end
@@ -30,5 +30,5 @@ MyApp.post "/logout" do
 
     session["user_id"] = nil
 
-  erb :"/logout"
+  erb :"/logins/logout"
 end

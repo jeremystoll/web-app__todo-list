@@ -1,3 +1,8 @@
+MyApp.get "/admin_home_page" do
+
+erb :"admin_home_page"
+end
+
 MyApp.get "/create_user" do
 
 erb :"users/create_user"
