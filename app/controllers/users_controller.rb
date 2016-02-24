@@ -38,6 +38,8 @@ end
 
 MyApp.get "/delete_user" do
 
+  @users = User.all
+
 erb :"users/delete_user"
 end
 
@@ -51,3 +53,19 @@ MyApp.post "/process_delete_user" do
     erb :"error"
   end
 end
+
+MyApp.get "/see_all_users" do
+
+  @users = User.all
+
+erb :"users/see_all_users"
+end
+
+MyApp.post "/admin/delete_user/:user_id" do
+  @user_del = User.find_by_id(params[:user_id])
+  @user_del.delete
+  @users = User.all
+erb :"users/see_all_users"
+end
+
+

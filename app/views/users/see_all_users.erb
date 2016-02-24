@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My Application</title>
+</head>
+
+<body>
+
+All Users:
+
+<table border="1" cellpadding="5" cellspacing="5">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+         <th>Password</th>
+        <th>Edit</th>
+      </tr>
+      <% @users.each do |n| %>   
+      <tr>  
+        <td><%= n.id %></td>
+        <td><%= n.name %></td>
+        <td><%= n.email %></td>
+        <td><%= n.password %></td>
+        <td>
+            <form action="/admin/delete_user/<%= n.id %>" method="post">
+              <input type="submit" value="Delete">
+            </form>
+          </td>
+      </tr>
+        <% end %>
+      
+    </table>
+
+
+</body>
+</html>
