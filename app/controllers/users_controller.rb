@@ -1,11 +1,11 @@
-MyApp.get "/admin_home_page" do
+MyApp.get "/" do
 
-erb :"admin_home_page"
+  erb :"home_page"
 end
 
 MyApp.get "/create_user" do
 
-erb :"users/create_user"
+  erb :"users/create_user"
 end
 
 MyApp.post "/process_create_user" do
@@ -16,42 +16,36 @@ MyApp.post "/process_create_user" do
   @user_new.password = params[:user_password]
   @user_new.save
 
-erb :"users/success_create_user"
+  erb :"users/success_create_user"
 end
 
-MyApp.get "/update_user" do
+MyApp.get "/edit_user" do
 
-erb :"users/update_user"
+  erb :"users/edit_user"
 end
 
-MyApp.post "/process_update_user" do
-
-@user = User.find_by_email(params[:user_email])
-  if @user.password == params[:user_password]
+MyApp.post "/process_edit_user" do
+  @user = User.find_by_id(session["user_id"])
+    @user.name = params[:user_new_name]
+    @user.email = params[:user_new_email]
     @user.password = params[:user_new_password]
     @user.save
-    erb :"users/success_update_user"
-  else
-    erb :"/error"
-  end
+  erb :"users/success_edit_user"
 end
 
 MyApp.get "/delete_user" do
 
   @users = User.all
 
-erb :"users/delete_user"
+  erb :"users/delete_user"
 end
+
 
 MyApp.post "/process_delete_user" do
 
-@user = User.find_by_email(params[:user_email])
-  if @user.password == params[:user_password]
+  @user = User.find_by_id(session["user_id"])
     @user.delete
-    erb :"users/success_delete_user"
-  else
-    erb :"error"
-  end
+  erb :"users/success_delete_user"
 end
 
 MyApp.get "/see_all_users" do
@@ -60,12 +54,4 @@ MyApp.get "/see_all_users" do
 
 erb :"users/see_all_users"
 end
-
-MyApp.post "/admin/delete_user/:user_id" do
-  @user_del = User.find_by_id(params[:user_id])
-  @user_del.delete
-  @users = User.all
-erb :"users/see_all_users"
-end
-
 

@@ -2,16 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Logged In</title>
+  <title>Login</title>
 </head>
-
+  To Login:
 <body>
-
-Success! Thou art logged in.
-
-<a href="/admin_home_page" method="get">
-  Admin Home Page
-</a>
+<form action= "/process_login" method="post">
+    Please enter your email address.
+  <br> 
+  <input type="text" name="user_email">
+  <br> 
+    Please enter a password
+  <br> 
+  <input type="text" name="user_password">
+  <br> 
+      <input type="submit">
+</form>
 
 </body>
 </html>

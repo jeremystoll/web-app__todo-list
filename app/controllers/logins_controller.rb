@@ -6,29 +6,32 @@
 # 
 # Reading and Updating a login, however, make a little less sense.
 
-MyApp.get "/" do
+MyApp.get "/login" do
 
-  erb :"/home_page"
+  erb :"/logins/login"
 end
 
-
-MyApp.post "/login" do
+MyApp.post "/process_login" do
 
   @user = User.find_by_email(params[:user_email])
 
   if @user.password == params[:user_password]
     session["user_id"] = @user.id
 
-    erb :"/logins/login"
+    erb :"/logins/success_login"
   else
     erb :"/error"
   end
 end
 
+MyApp.get "/logout" do
 
-MyApp.post "/logout" do
+  erb :"/logins/logout"
+end
+
+MyApp.post "/process_logout" do
 
     session["user_id"] = nil
 
-  erb :"/logins/logout"
+  erb :"/logins/success_logout"
 end

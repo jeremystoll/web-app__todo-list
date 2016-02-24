@@ -15,7 +15,6 @@ All Users:
         <th>Name</th>
         <th>Email</th>
          <th>Password</th>
-        <th>Edit</th>
       </tr>
       <% @users.each do |n| %>   
       <tr>  
@@ -23,11 +22,6 @@ All Users:
         <td><%= n.name %></td>
         <td><%= n.email %></td>
         <td><%= n.password %></td>
-        <td>
-            <form action="/admin/delete_user/<%= n.id %>" method="post">
-              <input type="submit" value="Delete">
-            </form>
-          </td>
       </tr>
         <% end %>
       
