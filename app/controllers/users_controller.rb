@@ -1,11 +1,21 @@
 MyApp.get "/" do
-
+  binding.pry
+  session[:user_id] = nil
+  binding.pry
   erb :"home_page"
 end
 
 MyApp.get "/create_user" do
-
+  binding.pry
+  if User.is_user_logged_in == false
+    binding.pry
+    @errors = []
+    @errors << "You must be logged in to create a new user."
+    erb :"/login_error"
+  else 
+  binding.pry
   erb :"users/create_user"
+  end
 end
 
 MyApp.post "/process_create_user" do

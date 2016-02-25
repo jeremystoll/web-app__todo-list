@@ -24,8 +24,8 @@ end
 
 MyApp.post "/process_edit_todo" do
 
-  @todo = Todo.find_by(:user_id => (session[:user_id]), :title => (params["todo_title"]))
-  
+  @todo = Todo.find_by(:user_id => (session[:user_id]), :title => (params[:todo_title]))
+  binding.pry
   @todo.description = params[:todo_description]
   @todo.save
 
@@ -39,7 +39,22 @@ end
 
 MyApp.post "/process_delete_todo" do
 
-  erb :"/todos/success_delete_todo"
+  if User.is_user_logged_in 
+    @todo = Todo.find_by(:user_id => (session[:user_id]), :title => (params[:todo_title]))
+    @todo.delete
+    erb :"/todos/success_delete_todo"
+  else
+    erb :"/login_error"
+  end
 end
 
+MyApp.get "/see_all_todos" do
+  
+  if User.is_user_logged_in 
+    @todos = Todo.all
+    erb :"/todos/see_all_todos"
+  else
+    erb :"/login_error"
+  end
+end
 

@@ -1,0 +1,17 @@
+All To-Dos:
+
+<table border="1" cellpadding="5" cellspacing="5">
+      <tr>
+        <th>User ID</th>
+        <th>Title</th>
+        <th>Description</th>
+      </tr>
+      <% @todos.each do |n| %>   
+      <tr>  
+        <td><%= n.user_id %></td>
+        <td><%= n.title %></td>
+        <td><%= n.description %></td>
+      </tr>
+        <% end %>
+      
+    </table>

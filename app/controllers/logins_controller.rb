@@ -7,6 +7,7 @@
 # Reading and Updating a login, however, make a little less sense.
 
 MyApp.get "/login" do
+  
 
   erb :"/logins/login"
 end
