@@ -23,13 +23,16 @@ end
 
 
 MyApp.post "/process_edit_todo" do
-
-  @todo = Todo.find_by(:user_id => (session[:user_id]), :title => (params[:todo_title]))
-  binding.pry
-  @todo.description = params[:todo_description]
-  @todo.save
-
-  erb :"/todos/success_edit_todo"
+  if User.is_user_logged_in(session[:user_id]) 
+    @todo = Todo.find_by(:user_id => (session[:user_id]), :title => (params[:todo_title]))
+    @todo.description = params[:todo_description]
+    @todo.save
+    erb :"/todos/success_edit_todo"
+  else 
+    @errors = []
+    @errors << "You must be logged in to edit To-Dos"
+      erb :"/login_error"
+  end
 end
 
 MyApp.get "/delete_todo" do
@@ -50,10 +53,12 @@ end
 
 MyApp.get "/see_all_todos" do
   
-  if User.is_user_logged_in 
+  if User.is_user_logged_in(session[:user_id]) 
     @todos = Todo.all
     erb :"/todos/see_all_todos"
   else
+    @errors = []
+    @errors << "You must be logged in to view all To-Dos"
     erb :"/login_error"
   end
 end
