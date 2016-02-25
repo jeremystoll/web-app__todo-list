@@ -22,6 +22,10 @@ MyApp.get "/edit_user" do
     @errors << "You must be logged in to edit a user."
     erb :"/login_error"
   else 
+    user = User.find_by_id(session[:user_id])
+    @user_name = user.name
+    @user_email = user.email
+    @user_password = user.password
     erb :"users/edit_user"
   end
 end
@@ -29,7 +33,7 @@ end
 MyApp.post "/process_edit_user" do
   if User.is_user_logged_in(session[:user_id]) == false
     @errors = []
-    @errors << "You must be logged in to edit a new user."
+    @errors << "You must be logged in to edit a user."
     erb :"/login_error"
   else 
     @user = User.find_by_id(session["user_id"])

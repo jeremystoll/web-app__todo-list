@@ -1,15 +1,15 @@
   <form action= "/process_edit_user" method="post">
-    Please enter your new name
+    Name
   <br>
-  <input type="text" name="user_new_name">
+  <input type="text" name="user_new_name" value="<%=@user_name%>">
   <br> 
-    Please enter your new email address
+    Email
   <br> 
-  <input type="text" name="user_new_email">
+  <input type="text" name="user_new_email"value="<%=@user_email%>">
   <br> 
-    Please enter your new password
+    Password
   <br> 
-  <input type="text" name="user_new_password">
+  <input type="text" name="user_new_password"value="<%=@user_password%>">
   <br> 
-      <input type="submit">
+      <input type="submit" value="Update">
   </form>
