@@ -23,7 +23,7 @@ end
 MyApp.get "/logout" do
   if User.is_user_logged_in(session[:user_id]) == false
     @errors = []
-    @errors << "You must be logged in to Log out. Is this unclear?"
+    @errors << "You must be logged-in in order to log out."
     erb :"/login_error"
   else 
     erb :"/logins/logout"

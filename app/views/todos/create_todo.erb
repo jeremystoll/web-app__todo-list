@@ -8,5 +8,11 @@ Create To-Do:
   <br> 
   <input type="text" name="todo_description" width="300">
   <br> 
+  <select name="todo_user_id">
+      <option>Assign a User...</option>
+      <% @users.each do |u| %>
+      <option value = "<%= u.id %>"><%=u.name%></option>
+      <% end %>
+      </select>
       <input type="submit">
 </form>

@@ -1,12 +1,24 @@
 Edit To-Do:
-<form action= "/process_edit_todo" method="post">
-    Title of To-Do you want to edit:
+<form action= "/process_edit_todo/<%= @todo.id %>" method="post">
+    Title:
   <br> 
-  <input type="text" name="todo_title">
+  <input type="text" name="todo_title" value="<%= @todo.title %>">
   <br> 
-    New Description:
+    Description:
   <br> 
-  <input type="text" name="todo_description" width="300">
+  <input type="text" name="todo_description" value="<%= @todo.description %>">
+  <br> 
+    Completed?
+  <br> 
+  <input type="text" name="completed" value="<%= @todo.completed %>">
+  <br> 
+    Task Assigned to:
+  <br> 
+  <input type="text" name="user_id" value="<%= @todo.user_id %>">
+  <br> 
+    Created By:
+  <br> 
+  <%= @todo.created_by %>
   <br> 
       <input type="submit">
 </form>

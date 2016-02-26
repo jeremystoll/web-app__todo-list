@@ -1,17 +1,38 @@
+Logged in as: "<%= @user.name  %>"
+<br>
 All To-Dos:
-
+<br>
 <table border="1" cellpadding="5" cellspacing="5">
       <tr>
-        <th>User ID</th>
+        <th>Created By</th>
         <th>Title</th>
         <th>Description</th>
+        <th>Assigned To</th>
+        <th></th>
       </tr>
       <% @todos.each do |n| %>   
       <tr>  
-        <td><%= n.user_id %></td>
+        <% @user_created_by = @users.find_by_id(n.created_by) %>
+        <td><%= @user_created_by.name %></td>
+
         <td><%= n.title %></td>
+
         <td><%= n.description %></td>
-      </tr>
+
+        <% @user_assigned = @users.find_by_id(n.user_id) %>
+        <% if @user_assigned == nil %>
+        <%='<td></td>' %>
+        <% else %>
+          <td><%= @user_assigned.name %></td>
+          <% end %>
+        <td><% if n.created_by == @user.id %>
+                  <%= '<form action="/edit_todo/' %>
+                  <%= n.id %>
+                  <%= 'method="post">' %>
+                  <%= '<input type="submit" value="EDIT">' %>
+                  <%= '</form></td></tr>' %>
+            <% else %>
+                  <%= '</td></tr>' %>
+            <% end %>
         <% end %>
-      
     </table>
