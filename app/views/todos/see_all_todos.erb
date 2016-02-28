@@ -1,5 +1,10 @@
 Logged in as: "<%= @user.name  %>"
 <br>
+<p>
+  <a href = "/create_todo">
+    Create a New To-Do
+  </a>
+</p>
 All To-Dos:
 <br>
 <table border="1" cellpadding="5" cellspacing="5">
@@ -8,6 +13,8 @@ All To-Dos:
         <th>Title</th>
         <th>Description</th>
         <th>Assigned To</th>
+        <th>Completed?</th>
+        <th></th>
         <th></th>
       </tr>
       <% @todos.each do |n| %>   
@@ -21,18 +28,27 @@ All To-Dos:
 
         <% @user_assigned = @users.find_by_id(n.user_id) %>
         <% if @user_assigned == nil %>
-        <%='<td></td>' %>
+        <%='<td>None</td>' %>
         <% else %>
           <td><%= @user_assigned.name %></td>
           <% end %>
-        <td><% if n.created_by == @user.id %>
-                  <%= '<form action="/edit_todo/' %>
-                  <%= n.id %>
-                  <%= 'method="post">' %>
-                  <%= '<input type="submit" value="EDIT">' %>
-                  <%= '</form></td></tr>' %>
+
+          <td><%= n.completed %></td>
+
+          <td><% if n.created_by == @user.id %>
+              <form action="/edit_todo/<%=n.id%>" method="get">
+              <input type="submit" value="EDIT">
+              </form></td>
             <% else %>
-                  <%= '</td></tr>' %>
+              </td>
+            <% end %>
+
+          <td><% if n.created_by == @user.id %>
+            <form action="/process_delete_todo/<%=n.id%>" method="post">
+            <input type="submit" value="DELETE">
+            </form></td></tr>
+            <% else %>
+            </td></tr>
             <% end %>
         <% end %>
     </table>

@@ -14,11 +14,11 @@ Edit To-Do:
   <br> 
     Task Assigned to:
   <br> 
-  <input type="text" name="user_id" value="<%= @todo.user_id %>">
+  <input type="text" name="user_id" value="<%= User.find_by_id(@todo.user_id).name %>">
   <br> 
     Created By:
   <br> 
-  <%= @todo.created_by %>
+  <%= User.find_by_id(@todo.created_by).name %>
   <br> 
       <input type="submit">
 </form>

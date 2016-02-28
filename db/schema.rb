@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at",  null: false
     t.string   "title"
     t.text     "description"
-    t.boolean  "completed"
+    t.text     "completed"
     t.integer  "user_id"
     t.integer  "created_by"
   end
